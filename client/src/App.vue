@@ -1,8 +1,9 @@
 
 <template>
   <div id='app'>
+    <marquee><h1>Hotel Guesthouse Paradiso ⭐️⭐️⭐️⭐️⭐️</h1></marquee>
     <bookings-form />
-    <bookings-grid :bookings="bookings" />
+    <bookings-grid />
   </div>
 </template>
 
@@ -21,5 +22,9 @@ export default {
 </script>
 
 <style>
+h1 {
+  display: flex;
+  justify-content: center;
+}
 
 </style>

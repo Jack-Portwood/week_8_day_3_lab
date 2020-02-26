@@ -1,5 +1,5 @@
 <template>
-  <div id="bookingsGrid">
+  <div id="bookingsGrid" v-if="bookings">
       <booking v-for="(booking, index) in bookings" :key="index" :booking="booking" />
   </div>
 </template>
@@ -24,6 +24,15 @@ export default {
         eventBus.$on('booking-added', (booking) => {
             this.bookings.push(booking)
         });
+
+        eventBus.$on('booking-deleted',(id)=>{
+            let index = this.bookings.findIndex(booking => booking._id === id)
+            this.bookings.splice(index, 1)
+        });
+
+        eventBus.$on('booking-changed', () => {
+            this.fetchData();
+        });
     },
     methods: {
         fetchData(){
@@ -34,6 +43,16 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+#bookingsGrid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+h2 {
+    padding: 0;
+    margin: 0;
+}
 
 </style>
